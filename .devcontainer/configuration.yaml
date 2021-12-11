@@ -3,7 +3,23 @@ default_config:
 logger:
   default: info
   logs:
-    custom_components.integration_blueprint: debug
+    custom_components.telerupteur: debug
 
 # If you need to debug uncomment the line below (doc: https://www.home-assistant.io/integrations/debugpy/)
-# debugpy:
+debugpy:
+
+input_boolean:
+  light_ouput:
+    name: light output
+    icon: mdi:lightbulb
+
+  light_state:
+    name: light_state
+    icon: mdi:lightbulb
+
+
+light:
+  - platform: telerupteur
+    name: lumiere test
+    light_command: input_boolean.light_ouput
+    light_state: input_boolean.light_state

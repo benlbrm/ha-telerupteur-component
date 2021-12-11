@@ -1,12 +1,23 @@
 """Test integration_blueprint switch."""
 from unittest.mock import call, patch
 
-from homeassistant.components.switch import SERVICE_TURN_OFF, SERVICE_TURN_ON
-from homeassistant.const import ATTR_ENTITY_ID
+from homeassistant.const import (
+    ATTR_ENTITY_ID,
+    CONF_NAME,
+    CONF_UNIQUE_ID,
+    SERVICE_TURN_OFF,
+    SERVICE_TURN_ON,
+)
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.integration_blueprint import async_setup_entry
-from custom_components.integration_blueprint.const import DEFAULT_NAME, DOMAIN, SWITCH
+from custom_components.telerupteur import async_setup_platform
+from custom_components.telerupteur.const import (
+    DEFAULT_NAME,
+    DOMAIN,
+    LIGHT,
+    CONF_INPUT,
+    CONF_OUTPUT,
+)
 
 from .const import MOCK_CONFIG
 
@@ -15,7 +26,7 @@ async def test_switch_services(hass):
     """Test switch services."""
     # Create a mock entry so we don't have to go through config flow
     config_entry = MockConfigEntry(domain=DOMAIN, data=MOCK_CONFIG, entry_id="test")
-    assert await async_setup_entry(hass, config_entry)
+    assert await async_setup_platform(hass, config_entry)
     await hass.async_block_till_done()
 
     # Functions/objects can be patched directly in test code as well and can be used to test
