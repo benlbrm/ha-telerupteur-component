@@ -97,7 +97,7 @@ class TelerupteurLight(LightEntity):
     @property
     def name(self):
         """Return the name of the sensor."""
-        return f"{self._name}_{LIGHT}"
+        return f"{self._name}"
 
     @property
     def is_on(self):
