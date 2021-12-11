@@ -23,13 +23,13 @@ Platform | Description
 
 
 ## Configuration is done in the configuration.yaml
-
+```yaml
 light:
 - platform: telerupteur
     name: Lumiere Chambre1
     light_command: switch.dolightchambre1
     light_state: binary_sensor.dilightchambre1
-
+```
 
 ## Required hardware to use this integration
 
