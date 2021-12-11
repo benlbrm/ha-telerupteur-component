@@ -1,10 +1,9 @@
 """
-Custom integration to integrate integration_blueprint with Home Assistant.
+Custom integration to integrate Telerupteurs with Home Assistant.
 
 For more details about this integration, please refer to
-https://github.com/custom-components/integration_blueprint
+https://github.com/custom-components/ha-telerupteur-component
 """
-import asyncio
 from datetime import timedelta
 import logging
 
@@ -12,7 +11,6 @@ from homeassistant.core import Config, HomeAssistant
 
 from .const import (
     DOMAIN,
-    PLATFORMS,
     STARTUP_MESSAGE,
 )
 

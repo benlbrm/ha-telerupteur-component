@@ -2,5 +2,6 @@
     "name": "Telerupteur",
     "domains": [
         "light"
-    ]
+    ],
+    "render_readme": true
 }
