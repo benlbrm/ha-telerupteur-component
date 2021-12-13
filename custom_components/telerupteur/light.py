@@ -1,33 +1,36 @@
 """Light platform for telerupteur."""
-from .const import (
-    DEFAULT_NAME,
-    DOMAIN,
-    PLATFORMS,
-    LIGHT,
-    CONF_INPUT,
-    CONF_OUTPUT,
-    ICON,
-    OUPTUT_DURATION,
-)
-import voluptuous as vol
-import asyncio
 import logging
-from homeassistant.components.light import LightEntity, PLATFORM_SCHEMA
+import asyncio
+import voluptuous as vol
+from homeassistant.components.light import (
+    LightEntity,
+    PLATFORM_SCHEMA,
+    COLOR_MODE_ONOFF,
+)
 from homeassistant.util import slugify
 from homeassistant.helpers import entity_platform
 from homeassistant.helpers.reload import async_setup_reload_service
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.event import (
     async_track_state_change,
-    async_track_time_interval,
 )
-from homeassistant.core import DOMAIN as HA_DOMAIN, callback
+from homeassistant.core import DOMAIN as HA_DOMAIN
 from homeassistant.const import (
     ATTR_ENTITY_ID,
     CONF_NAME,
     CONF_UNIQUE_ID,
     SERVICE_TURN_OFF,
     SERVICE_TURN_ON,
+)
+
+from .const import (
+    DEFAULT_NAME,
+    DOMAIN,
+    PLATFORMS,
+    CONF_INPUT,
+    CONF_OUTPUT,
+    ICON,
+    OUPTUT_DURATION,
 )
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
@@ -42,7 +45,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 
-async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
+async def async_setup_platform(hass, config, async_add_entities):
     """Set up the telerupteur platform."""
     await async_setup_reload_service(hass, DOMAIN, PLATFORMS)
 
@@ -71,6 +74,7 @@ class TelerupteurLight(LightEntity):
         self._light_s = False
         if self._unique_id == "none":
             self._unique_id = slugify(f"{DOMAIN}_{self._name}_{self._light_command_id}")
+        self._attr_supported_color_modes = [COLOR_MODE_ONOFF]
 
     async def async_added_to_hass(self):
         """Run when entity about to be added."""
