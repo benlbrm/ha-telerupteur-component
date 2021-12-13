@@ -17,9 +17,43 @@ input_boolean:
     name: light_state
     icon: mdi:lightbulb
 
+  light_ouput1:
+    name: light output1
+    icon: mdi:lightbulb
+
+  light_state1:
+    name: light_state1
+    icon: mdi:lightbulb
+
+  light_ouput2:
+    name: light output2
+    icon: mdi:lightbulb
+
+  light_state2:
+    name: light_state2
+    icon: mdi:lightbulb
+
 
 light:
   - platform: telerupteur
     name: lumiere test
     light_command: input_boolean.light_ouput
     light_state: input_boolean.light_state
+
+  - platform: telerupteur
+    name: lumiere test 1
+    light_command: input_boolean.light_ouput1
+    light_state: input_boolean.light_state1
+
+  - platform: telerupteur
+    name: lumiere test 2
+    light_command: input_boolean.light_ouput2
+    light_state: input_boolean.light_state2
+
+group:
+  home_lights:
+    name: Lumières de la maison
+    entities:
+      - light.lumiere_test
+      - light.lumiere_test_1
+      - light.lumiere_test_2
