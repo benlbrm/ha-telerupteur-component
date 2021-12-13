@@ -45,7 +45,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 
-async def async_setup_platform(hass, config, async_add_entities):
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """Set up the telerupteur platform."""
     await async_setup_reload_service(hass, DOMAIN, PLATFORMS)
 
