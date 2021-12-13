@@ -129,9 +129,9 @@ class TelerupteurLight(LightEntity):
     async def async_turn_on(self, **kwargs):
         """Turn device on."""
         if self.is_on is not True:
-            await self._toggle_light()
+            self.hass.async_create_task(self._toggle_light())
 
     async def async_turn_off(self, **kwargs):
         """Turn device off."""
         if self.is_on is True:
-            await self._toggle_light()
+            self.hass.async_create_task(self._toggle_light())
