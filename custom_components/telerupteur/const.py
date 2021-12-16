@@ -3,7 +3,7 @@
 NAME = "Telerupteur"
 DOMAIN = "telerupteur"
 DOMAIN_DATA = f"{DOMAIN}_data"
-VERSION = "0.0.1"
+VERSION = "2021.12.8"
 ISSUE_URL = "https://github.com/custom-components/ha-telerupteur-component/issues"
 
 LIGHT = "light"
