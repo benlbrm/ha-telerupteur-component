@@ -106,7 +106,7 @@ class TelerupteurLight(LightEntity):
     @property
     def is_on(self):
         """Returns if the light entity is on or not."""
-        if self._light_s is "on":
+        if self._light_s == "on":
             return True
         return False
 
